@@ -27,6 +27,7 @@
 
 node_modules/
 Client/.env
+backend/.env
 
 .DS_Store
 
