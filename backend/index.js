@@ -138,6 +138,28 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
     }
 });
 
+app.delete('/api/chats/:id', ClerkExpressRequireAuth(), async (req, res) => {
+    const userId = req.auth.userId;
+    const { id } = req.params;
+
+    try {
+        // Delete chat from the Chat collection
+        await Chat.findOneAndDelete({ _id: id, userId });
+
+        // Remove chat reference from UserChats
+        await UserChats.updateOne(
+            { userId },
+            { $pull: { chats: { _id: id } } }
+        );
+
+        res.status(200).json({ message: 'Chat deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to delete chat' });
+    }
+});
+
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(401).send('Unauthenticated!');

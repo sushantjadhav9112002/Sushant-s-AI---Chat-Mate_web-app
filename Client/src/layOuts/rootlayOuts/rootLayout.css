@@ -25,6 +25,7 @@
     main {
         flex: 1;
         overflow: hidden;
+        position: relative; /* Ensure positioning context */
     }
 
     @media screen and (max-width: 768px) {

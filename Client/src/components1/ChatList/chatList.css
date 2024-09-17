@@ -50,6 +50,25 @@
         height: 24px;
     }
 
+    .chat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    .delete-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: red; /* Adjust color as needed */
+    }
+    
+    .delete-btn:hover {
+        opacity: 0.7;
+    }
+    
+
     .texts{
         display: flex;
         flex-direction: column;
